@@ -1,3 +1,5 @@
+export type PlaceholderVariant = "accent" | "ink" | "sand";
+
 /**
  * Bloque de marcador de posición para fotografías reales.
  * Sustituir por `next/image` apuntando a los archivos definitivos en
@@ -10,9 +12,9 @@ export function PlaceholderImage({
 }: {
   label: string;
   className?: string;
-  variant?: "accent" | "ink" | "sand";
+  variant?: PlaceholderVariant;
 }) {
-  const variants: Record<typeof variant, string> = {
+  const variants: Record<PlaceholderVariant, string> = {
     accent: "from-accent-500/80 to-ink-900",
     ink: "from-ink-600 to-ink-900",
     sand: "from-sand-200 to-sand-100",

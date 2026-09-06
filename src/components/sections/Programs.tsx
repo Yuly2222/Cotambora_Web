@@ -1,42 +1,123 @@
 import { programs } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { PlaceholderImage, type PlaceholderVariant } from "@/components/ui/PlaceholderImage";
+
+// Combinaciones de color que se van repitiendo por tarjeta, para que la
+// galería de placeholders no se vea monótona. Al llegar imágenes reales,
+// este arreglo (y el componente PlaceholderImage) ya no hace falta.
+const imagePairs: Array<{ main: PlaceholderVariant; secondary: PlaceholderVariant }> = [
+  { main: "ink", secondary: "accent" },
+  { main: "accent", secondary: "sand" },
+  { main: "accent", secondary: "ink" },
+  { main: "sand", secondary: "accent" },
+];
 
 export function Programs() {
   return (
-    <section id="programas" className="bg-ink-900 py-20 sm:py-28">
-      <Container>
-        <SectionHeading eyebrow="Qué hacemos" title="Nuestros programas" dark />
+    <section id="programas">
+      <div className="bg-ink-900 py-20 sm:py-28">
+        <Container>
+          <SectionHeading eyebrow="Nuestros grupos" title="Programas y agrupaciones" dark />
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-sand-100/70 sm:text-base">
+            Cada agrupación tiene su propia identidad sonora y escénica. Esta es una muestra de los
+            grupos que hacen parte de la corporación; con el tiempo se irán sumando nuevos procesos.
+          </p>
+        </Container>
+      </div>
 
-        <div className="mt-14 divide-y divide-white/10 border-t border-white/10">
-          {programs.map((program) => (
-            <article
-              key={program.number}
-              className="grid grid-cols-1 items-center gap-8 py-12 md:grid-cols-[auto_1fr_1fr] md:gap-12"
-            >
-              <span className="font-display text-2xl font-medium text-accent-400 md:text-3xl">
-                {program.number}
+      {programs.map((program, index) => {
+        // El número, el color y la disposición de cada tarjeta se derivan
+        // del índice: agregar un grupo nuevo a `content/site.ts` no
+        // requiere tocar este componente.
+        const number = String(index + 1).padStart(2, "0");
+        const isDark = index % 2 === 1;
+        const reversed = index % 4 >= 2;
+        const { main, secondary } = imagePairs[index % imagePairs.length]!;
+
+        return (
+          <article
+            key={program.name}
+            className={isDark ? "bg-ink-800 py-16 sm:py-24" : "bg-sand-100 py-16 sm:py-24"}
+          >
+            <Container>
+              <span
+                className={`block font-display text-5xl font-medium sm:text-6xl ${
+                  isDark ? "text-sand-100" : "text-ink-900"
+                }`}
+              >
+                {number}
               </span>
 
-              <div>
-                <h3 className="font-display text-2xl font-semibold text-sand-100 sm:text-3xl">
-                  {program.title}
-                </h3>
-                <p className="mt-3 max-w-md text-sm leading-relaxed text-sand-100/70 sm:text-base">
-                  {program.description}
-                </p>
-              </div>
+              <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+                {isDark ? (
+                  <div className={`relative pb-10 pl-[18%] pt-10 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
+                    <PlaceholderImage
+                      label={program.name}
+                      variant={main}
+                      className="ml-auto aspect-[4/5] w-4/5 rounded-sm"
+                    />
+                    <PlaceholderImage
+                      label={program.category}
+                      variant={secondary}
+                      className="absolute left-0 top-0 aspect-square w-2/5 rounded-sm shadow-xl ring-4 ring-ink-800 sm:w-1/3"
+                    />
+                  </div>
+                ) : (
+                  <div className={reversed ? "lg:order-2" : "lg:order-1"}>
+                    <PlaceholderImage
+                      label={program.name}
+                      variant={main}
+                      className="aspect-[4/5] w-full rounded-sm border border-ink-100"
+                    />
+                  </div>
+                )}
 
-              <PlaceholderImage
-                label={program.title}
-                variant="ink"
-                className="aspect-video w-full rounded-sm md:aspect-[4/3]"
-              />
-            </article>
-          ))}
-        </div>
-      </Container>
+                <div className={`flex flex-col items-start ${reversed ? "lg:order-1" : "lg:order-2"}`}>
+                  <p
+                    className={`text-xs font-medium uppercase tracking-[0.2em] ${
+                      isDark ? "text-accent-400" : "text-accent-500"
+                    }`}
+                  >
+                    {program.category}
+                  </p>
+                  <h3
+                    className={`mt-3 font-display text-3xl font-semibold tracking-tight sm:text-4xl ${
+                      isDark ? "text-sand-100" : "text-ink-900"
+                    }`}
+                  >
+                    {program.name}
+                  </h3>
+                  <p
+                    className={`mt-4 max-w-md text-base leading-relaxed ${
+                      isDark ? "text-sand-100/70" : "text-ink-600"
+                    }`}
+                  >
+                    {program.description}
+                  </p>
+
+                  {!isDark ? (
+                    <PlaceholderImage
+                      label={program.category}
+                      variant={secondary}
+                      className="mt-6 aspect-[16/10] w-full max-w-sm rounded-sm border border-ink-100"
+                    />
+                  ) : null}
+
+                  <a
+                    href={program.href ?? "#contacto"}
+                    className={`mt-6 inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline ${
+                      isDark ? "text-accent-400" : "text-accent-500"
+                    }`}
+                  >
+                    Conoce más sobre el grupo <span aria-hidden="true">→</span>
+                  </a>
+                </div>
+              </div>
+            </Container>
+          </article>
+        );
+      })}
     </section>
   );
 }

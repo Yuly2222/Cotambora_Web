@@ -55,26 +55,65 @@ export const aboutContent = {
   ],
 } as const;
 
-export const programs = [
+export type CulturalGroup = {
+  name: string;
+  category: string;
+  description: string;
+  href?: string;
+};
+
+/**
+ * Grupos y agrupaciones culturales de la corporación.
+ *
+ * Para agregar un grupo nuevo, basta con añadir un objeto al final del
+ * arreglo: el número de orden, los colores y la disposición de imágenes de
+ * cada tarjeta se calculan automáticamente a partir de la posición en la
+ * lista (ver `Programs.tsx`).
+ */
+export const programs: CulturalGroup[] = [
   {
-    number: "01",
-    title: "Formación artística",
+    name: "Orquesta Tropical",
+    category: "Música tropical",
     description:
-      "Talleres y escuelas de música, percusión y danza tradicional dirigidos a niños, jóvenes y adultos de la comunidad.",
+      "Ensamble que fusiona ritmos tropicales del Caribe colombiano —cumbia, porro y salsa— en arreglos propios para escenarios y festivales.",
   },
   {
-    number: "02",
-    title: "Festivales y encuentros",
+    name: "Carranga",
+    category: "Música andina",
     description:
-      "Organización de festivales culturales que reúnen a agrupaciones locales, regionales y nacionales para celebrar nuestras tradiciones.",
+      "Agrupación que mantiene viva la carranga campesina, con tiple, guitarra, requinto y guacharaca, heredera de la tradición andina.",
   },
   {
-    number: "03",
-    title: "Memoria e investigación",
+    name: "Teatro",
+    category: "Artes escénicas",
     description:
-      "Procesos de documentación e investigación del patrimonio cultural inmaterial, con enfoque en la tradición oral y musical.",
+      "Colectivo de teatro comunitario que crea puestas en escena a partir de la memoria, la oralidad y las historias del territorio.",
   },
-] as const;
+  {
+    name: "Rock",
+    category: "Música",
+    description:
+      "Banda que explora el rock desde una mirada local, tendiendo puentes entre la tradición cultural y la escena contemporánea.",
+  },
+  {
+    name: "Danza",
+    category: "Danza folclórica",
+    description:
+      "Grupo de danza dedicado a la investigación y puesta en escena de bailes tradicionales de la región.",
+  },
+  {
+    name: "Batucada",
+    category: "Percusión",
+    description:
+      "Batería de percusión que contagia de ritmo cada calle, plaza y escenario que recorre.",
+  },
+  {
+    name: "Papayera",
+    category: "Música de vientos",
+    description:
+      "Banda de vientos tradicional, infaltable en fiestas, desfiles y celebraciones populares.",
+  },
+];
 
 export const galleryImages = [
   { id: 1, alt: "Presentación de danza tradicional" },
