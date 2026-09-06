@@ -1,6 +1,7 @@
 import { heroContent, programs } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { Carousel, type CarouselSlide } from "@/components/ui/Carousel";
+import { Reveal } from "@/components/ui/Reveal";
 import type { PlaceholderVariant } from "@/components/ui/PlaceholderImage";
 
 const variants: PlaceholderVariant[] = ["accent", "ink", "sand"];
@@ -26,22 +27,26 @@ export function Hero() {
   return (
     <section id="inicio" className="bg-ink-900 pb-20 pt-14 sm:pb-28 sm:pt-20">
       <Container>
-        <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent-400">
-          {heroContent.eyebrow}
-        </p>
+        <Reveal>
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-accent-400">
+            {heroContent.eyebrow}
+          </p>
 
-        <Carousel
-          slides={heroSlides}
-          intervalMs={2000}
-          sizes="100vw"
-          className="aspect-video w-full"
-        />
+          <Carousel
+            slides={heroSlides}
+            intervalMs={2000}
+            sizes="100vw"
+            className="aspect-video w-full"
+          />
+        </Reveal>
 
-        <h1 className="mt-8 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-sand-100 sm:mt-10 sm:text-7xl md:text-8xl">
-          {heroContent.title}
-        </h1>
+        <Reveal delay={120}>
+          <h1 className="mt-8 font-display text-6xl font-semibold leading-[0.95] tracking-tight text-sand-100 sm:mt-10 sm:text-7xl md:text-8xl">
+            {heroContent.title}
+          </h1>
+        </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 border-t border-white/10 pt-10 lg:grid-cols-[1fr_auto] lg:items-center">
+        <Reveal delay={240} className="mt-10 grid grid-cols-1 gap-8 border-t border-white/10 pt-10 lg:grid-cols-[1fr_auto] lg:items-center">
           <p className="max-w-2xl text-base leading-relaxed text-sand-100/75 sm:text-lg">
             {heroContent.description}
           </p>
@@ -60,7 +65,7 @@ export function Hero() {
               {heroContent.secondaryCta.label}
             </a>
           </div>
-        </div>
+        </Reveal>
       </Container>
     </section>
   );

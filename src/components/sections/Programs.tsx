@@ -2,6 +2,7 @@ import { programs } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { Reveal } from "@/components/ui/Reveal";
 import type { PlaceholderVariant } from "@/components/ui/PlaceholderImage";
 
 // Combinaciones de color que se van repitiendo por tarjeta mientras no hay
@@ -19,11 +20,13 @@ export function Programs() {
     <section id="programas">
       <div className="bg-ink-900 py-20 sm:py-28">
         <Container>
-          <SectionHeading eyebrow="Nuestros grupos" title="Programas y agrupaciones" dark />
-          <p className="mt-6 max-w-xl text-sm leading-relaxed text-sand-100/70 sm:text-base">
-            Cada agrupación tiene su propia identidad sonora y escénica. Esta es una muestra de los
-            grupos que hacen parte de la corporación; con el tiempo se irán sumando nuevos procesos.
-          </p>
+          <Reveal>
+            <SectionHeading eyebrow="Nuestros grupos" title="Programas y agrupaciones" dark />
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-sand-100/70 sm:text-base">
+              Cada agrupación tiene su propia identidad sonora y escénica. Esta es una muestra de los
+              grupos que hacen parte de la corporación; con el tiempo se irán sumando nuevos procesos.
+            </p>
+          </Reveal>
         </Container>
       </div>
 
@@ -54,7 +57,7 @@ export function Programs() {
 
               <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
                 {isDark ? (
-                  <div className={`grid grid-cols-5 gap-3 sm:gap-4 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
+                  <Reveal className={`grid grid-cols-5 gap-3 sm:gap-4 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
                     <SiteImage
                       src={mainSrc}
                       alt={program.name}
@@ -67,19 +70,22 @@ export function Programs() {
                       variant={secondary}
                       className="col-span-3 aspect-[4/5] w-full rounded-sm"
                     />
-                  </div>
+                  </Reveal>
                 ) : (
-                  <div className={reversed ? "lg:order-2" : "lg:order-1"}>
+                  <Reveal className={reversed ? "lg:order-2" : "lg:order-1"}>
                     <SiteImage
                       src={mainSrc}
                       alt={program.name}
                       variant={main}
                       className="aspect-[4/5] w-full rounded-sm border border-ink-100"
                     />
-                  </div>
+                  </Reveal>
                 )}
 
-                <div className={`flex flex-col items-start ${reversed ? "lg:order-1" : "lg:order-2"}`}>
+                <Reveal
+                  delay={120}
+                  className={`flex flex-col items-start ${reversed ? "lg:order-1" : "lg:order-2"}`}
+                >
                   <p
                     className={`text-xs font-medium uppercase tracking-[0.2em] ${
                       isDark ? "text-accent-400" : "text-brand"
@@ -119,7 +125,7 @@ export function Programs() {
                   >
                     Conoce más sobre el grupo <span aria-hidden="true">→</span>
                   </a>
-                </div>
+                </Reveal>
               </div>
             </Container>
           </article>

@@ -2,20 +2,23 @@ import { aboutContent } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteImage } from "@/components/ui/SiteImage";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function About() {
   return (
     <section id="nosotros" className="bg-sand-100 py-20 sm:py-28">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <SiteImage
-            src={aboutContent.image.src}
-            alt={aboutContent.image.alt}
-            variant="sand"
-            className="aspect-[4/5] w-full rounded-sm border border-ink-100"
-          />
+          <Reveal>
+            <SiteImage
+              src={aboutContent.image.src}
+              alt={aboutContent.image.alt}
+              variant="sand"
+              className="aspect-[4/5] w-full rounded-sm border border-ink-100"
+            />
+          </Reveal>
 
-          <div>
+          <Reveal delay={120}>
             <SectionHeading eyebrow={aboutContent.eyebrow} title={aboutContent.title} />
 
             <div className="mt-6 space-y-4">
@@ -39,7 +42,7 @@ export function About() {
                 </div>
               ))}
             </dl>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>

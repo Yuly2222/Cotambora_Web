@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { siteConfig } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
+import { Reveal } from "@/components/ui/Reveal";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -51,7 +52,7 @@ export function Contact() {
     <section id="contacto" className="bg-sand-100 py-20 sm:py-28">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <div>
+          <Reveal>
             <SectionHeading eyebrow="Hablemos" title="Contáctanos" />
             <p className="mt-6 max-w-md text-base leading-relaxed text-ink-600">
               ¿Quieres vincularte a nuestros programas, proponer una alianza o invitarnos a un
@@ -67,80 +68,82 @@ export function Contact() {
               <p>{siteConfig.phone}</p>
               <p>{siteConfig.address}</p>
             </div>
-          </div>
+          </Reveal>
 
-          <form onSubmit={handleSubmit} noValidate className="space-y-5">
-            <div>
-              <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink-900">
-                Nombre
-              </label>
-              <input
-                id="name"
-                name="name"
-                type="text"
-                required
-                minLength={2}
-                maxLength={100}
-                autoComplete="name"
-                className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
-              />
-            </div>
+          <Reveal delay={120}>
+            <form onSubmit={handleSubmit} noValidate className="space-y-5">
+              <div>
+                <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-ink-900">
+                  Nombre
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  minLength={2}
+                  maxLength={100}
+                  autoComplete="name"
+                  className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
+                />
+              </div>
 
-            <div>
-              <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink-900">
-                Correo electrónico
-              </label>
-              <input
-                id="email"
-                name="email"
-                type="email"
-                required
-                maxLength={200}
-                autoComplete="email"
-                className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
-              />
-            </div>
+              <div>
+                <label htmlFor="email" className="mb-1.5 block text-sm font-medium text-ink-900">
+                  Correo electrónico
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  maxLength={200}
+                  autoComplete="email"
+                  className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
+                />
+              </div>
 
-            <div>
-              <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink-900">
-                Mensaje
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                required
-                minLength={10}
-                maxLength={2000}
-                rows={5}
-                className="w-full resize-none rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
-              />
-            </div>
+              <div>
+                <label htmlFor="message" className="mb-1.5 block text-sm font-medium text-ink-900">
+                  Mensaje
+                </label>
+                <textarea
+                  id="message"
+                  name="message"
+                  required
+                  minLength={10}
+                  maxLength={2000}
+                  rows={5}
+                  className="w-full resize-none rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
+                />
+              </div>
 
-            {/* Honeypot anti-spam: oculto para personas, visible para bots */}
-            <div className="hidden" aria-hidden="true">
-              <label htmlFor="company">Empresa</label>
-              <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
-            </div>
+              {/* Honeypot anti-spam: oculto para personas, visible para bots */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="company">Empresa</label>
+                <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+              </div>
 
-            <button
-              type="submit"
-              disabled={status === "submitting"}
-              className="inline-flex w-full items-center justify-center rounded-sm bg-accent-500 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
-            >
-              {status === "submitting" ? "Enviando..." : "Enviar mensaje"}
-            </button>
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="inline-flex w-full items-center justify-center rounded-sm bg-accent-500 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              >
+                {status === "submitting" ? "Enviando..." : "Enviar mensaje"}
+              </button>
 
-            <div role="status" aria-live="polite">
-              {status === "success" ? (
-                <p className="text-sm font-medium text-brand">
-                  ¡Gracias! Tu mensaje fue enviado correctamente.
-                </p>
-              ) : null}
-              {status === "error" ? (
-                <p className="text-sm font-medium text-red-700">{errorMessage}</p>
-              ) : null}
-            </div>
-          </form>
+              <div role="status" aria-live="polite">
+                {status === "success" ? (
+                  <p className="text-sm font-medium text-brand">
+                    ¡Gracias! Tu mensaje fue enviado correctamente.
+                  </p>
+                ) : null}
+                {status === "error" ? (
+                  <p className="text-sm font-medium text-red-700">{errorMessage}</p>
+                ) : null}
+              </div>
+            </form>
+          </Reveal>
         </div>
       </Container>
     </section>

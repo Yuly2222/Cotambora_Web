@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
 import { siteConfig } from "@/content/site";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import "./globals.css";
 
 const sans = Inter({
@@ -44,7 +45,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${sans.variable} ${display.variable}`}>
-      <body className="font-sans">{children}</body>
+      <body className="font-sans">
+        {children}
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }

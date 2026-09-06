@@ -16,6 +16,8 @@ export const siteConfig = {
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
   email: "corporacioncotambora@gmail.com",
   phone: "+57 314 348 4783",
+  // Mensaje que llega precargado al abrir el chat desde el botón de WhatsApp.
+  whatsappMessage: "Hola Cotambora, quiero más información.",
   address: "Dirección de la corporación, Ciudad, Colombia",
   social: {
     instagram: "https://instagram.com/cotambora",
