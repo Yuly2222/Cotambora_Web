@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-sand-100 text-ink-900 antialiased;
+}
+
+::selection {
+  @apply bg-accent-500 text-sand-100;
+}
+
+:focus-visible {
+  @apply outline-2 outline-offset-2 outline-accent-500;
+}
