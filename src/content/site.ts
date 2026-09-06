@@ -28,7 +28,6 @@ export const navLinks = [
   { href: "#nosotros", label: "Nosotros" },
   { href: "#programas", label: "Programas" },
   { href: "#galeria", label: "Galería" },
-  { href: "#aliados", label: "Aliados" },
   { href: "#contacto", label: "Contacto" },
 ] as const;
 
@@ -39,6 +38,11 @@ export const heroContent = {
     "Somos una corporación cultural sin ánimo de lucro dedicada a preservar, fortalecer y proyectar las tradiciones musicales, dancísticas y ancestrales de nuestro territorio.",
   primaryCta: { label: "Conoce nuestros programas", href: "#programas" },
   secondaryCta: { label: "Contáctanos", href: "#contacto" },
+  // Ver README > "Inventario de imágenes" para el nombre exacto de cada archivo.
+  images: [
+    { src: "/images/hero-1.jpg", alt: "Danza tradicional", variant: "accent" },
+    { src: "/images/hero-2.jpg", alt: "Percusión en vivo", variant: "ink" },
+  ],
 } as const;
 
 export const aboutContent = {
@@ -53,9 +57,12 @@ export const aboutContent = {
     { value: "+500", label: "artistas y gestores acompañados" },
     { value: "+30", label: "eventos y encuentros realizados" },
   ],
+  image: { src: "/images/nosotros.jpg", alt: "Encuentro cultural comunitario" },
 } as const;
 
 export type CulturalGroup = {
+  /** Usado para construir el nombre de archivo de sus imágenes: ver README. */
+  slug: string;
   name: string;
   category: string;
   description: string;
@@ -68,46 +75,55 @@ export type CulturalGroup = {
  * Para agregar un grupo nuevo, basta con añadir un objeto al final del
  * arreglo: el número de orden, los colores y la disposición de imágenes de
  * cada tarjeta se calculan automáticamente a partir de la posición en la
- * lista (ver `Programs.tsx`).
+ * lista (ver `Programs.tsx`). Las fotos se buscan en
+ * `/public/images/programas/{slug}-1.jpg` (principal) y `{slug}-2.jpg`
+ * (acento) — ver README > "Inventario de imágenes".
  */
 export const programs: CulturalGroup[] = [
   {
+    slug: "orquesta-tropical",
     name: "Orquesta Tropical",
     category: "Música tropical",
     description:
       "Ensamble que fusiona ritmos tropicales del Caribe colombiano —cumbia, porro y salsa— en arreglos propios para escenarios y festivales.",
   },
   {
-    name: "Carranga",
-    category: "Música andina",
-    description:
-      "Agrupación que mantiene viva la carranga campesina, con tiple, guitarra, requinto y guacharaca, heredera de la tradición andina.",
-  },
-  {
-    name: "Teatro",
-    category: "Artes escénicas",
-    description:
-      "Colectivo de teatro comunitario que crea puestas en escena a partir de la memoria, la oralidad y las historias del territorio.",
-  },
-  {
-    name: "Rock",
-    category: "Música",
-    description:
-      "Banda que explora el rock desde una mirada local, tendiendo puentes entre la tradición cultural y la escena contemporánea.",
-  },
-  {
-    name: "Danza",
-    category: "Danza folclórica",
-    description:
-      "Grupo de danza dedicado a la investigación y puesta en escena de bailes tradicionales de la región.",
-  },
-  {
+    slug: "batucada",
     name: "Batucada",
     category: "Percusión",
     description:
       "Batería de percusión que contagia de ritmo cada calle, plaza y escenario que recorre.",
   },
   {
+    slug: "rock",
+    name: "Rock",
+    category: "Música",
+    description:
+      "Banda que explora el rock desde una mirada local, tendiendo puentes entre la tradición cultural y la escena contemporánea.",
+  },
+  {
+    slug: "carranga",
+    name: "Carranga",
+    category: "Música andina",
+    description:
+      "Agrupación que mantiene viva la carranga campesina, con tiple, guitarra, requinto y guacharaca, heredera de la tradición andina.",
+  },
+  {
+    slug: "teatro",
+    name: "Teatro",
+    category: "Artes escénicas",
+    description:
+      "Colectivo de teatro comunitario que crea puestas en escena a partir de la memoria, la oralidad y las historias del territorio.",
+  },
+  {
+    slug: "danza",
+    name: "Danza",
+    category: "Danza folclórica",
+    description:
+      "Grupo de danza dedicado a la investigación y puesta en escena de bailes tradicionales de la región.",
+  },
+  {
+    slug: "papayera",
     name: "Papayera",
     category: "Música de vientos",
     description:
@@ -115,13 +131,17 @@ export const programs: CulturalGroup[] = [
   },
 ];
 
+/**
+ * Fotos de la galería. Cada una se busca en
+ * `/public/images/galeria/{slug}.jpg` — ver README > "Inventario de imágenes".
+ */
 export const galleryImages = [
-  { id: 1, alt: "Presentación de danza tradicional" },
-  { id: 2, alt: "Ensamble de percusión en vivo" },
-  { id: 3, alt: "Taller de formación artística" },
-  { id: 4, alt: "Festival cultural comunitario" },
-  { id: 5, alt: "Instrumentos tradicionales" },
-  { id: 6, alt: "Encuentro de agrupaciones culturales" },
+  { id: 1, slug: "danza-tradicional", alt: "Presentación de danza tradicional" },
+  { id: 2, slug: "percusion-vivo", alt: "Ensamble de percusión en vivo" },
+  { id: 3, slug: "taller-formacion", alt: "Taller de formación artística" },
+  { id: 4, slug: "festival-comunitario", alt: "Festival cultural comunitario" },
+  { id: 5, slug: "instrumentos-tradicionales", alt: "Instrumentos tradicionales" },
+  { id: 6, slug: "encuentro-agrupaciones", alt: "Encuentro de agrupaciones culturales" },
 ] as const;
 
 export const partners = [

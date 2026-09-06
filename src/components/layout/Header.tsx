@@ -8,7 +8,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-ink-900/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-brand/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between sm:h-20">
         <a
           href="#inicio"
@@ -57,7 +57,7 @@ export function Header() {
       </Container>
 
       {open ? (
-        <nav id="mobile-menu" className="border-t border-white/10 bg-ink-900 md:hidden">
+        <nav id="mobile-menu" className="border-t border-white/10 bg-brand md:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
               <a

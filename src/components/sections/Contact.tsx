@@ -60,7 +60,7 @@ export function Contact() {
 
             <div className="mt-8 space-y-2 text-sm text-ink-600">
               <p>
-                <a href={`mailto:${siteConfig.email}`} className="font-medium hover:text-accent-500">
+                <a href={`mailto:${siteConfig.email}`} className="font-medium hover:text-brand">
                   {siteConfig.email}
                 </a>
               </p>
@@ -82,7 +82,7 @@ export function Contact() {
                 minLength={2}
                 maxLength={100}
                 autoComplete="name"
-                className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-accent-500"
+                className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
               />
             </div>
 
@@ -97,7 +97,7 @@ export function Contact() {
                 required
                 maxLength={200}
                 autoComplete="email"
-                className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-accent-500"
+                className="w-full rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
               />
             </div>
 
@@ -112,7 +112,7 @@ export function Contact() {
                 minLength={10}
                 maxLength={2000}
                 rows={5}
-                className="w-full resize-none rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-accent-500"
+                className="w-full resize-none rounded-sm border border-ink-100 bg-white px-4 py-2.5 text-sm text-ink-900 outline-none transition-colors focus:border-brand"
               />
             </div>
 
@@ -125,14 +125,14 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="inline-flex w-full items-center justify-center rounded-sm bg-accent-500 px-6 py-3 text-sm font-medium text-sand-100 transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
+              className="inline-flex w-full items-center justify-center rounded-sm bg-accent-500 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-accent-600 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {status === "submitting" ? "Enviando..." : "Enviar mensaje"}
             </button>
 
             <div role="status" aria-live="polite">
               {status === "success" ? (
-                <p className="text-sm font-medium text-emerald-700">
+                <p className="text-sm font-medium text-brand">
                   ¡Gracias! Tu mensaje fue enviado correctamente.
                 </p>
               ) : null}

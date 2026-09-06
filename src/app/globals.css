@@ -11,7 +11,7 @@ body {
 }
 
 ::selection {
-  @apply bg-accent-500 text-sand-100;
+  @apply bg-accent-500 text-ink-900;
 }
 
 :focus-visible {

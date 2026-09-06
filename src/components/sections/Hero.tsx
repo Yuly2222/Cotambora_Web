@@ -1,8 +1,10 @@
 import { heroContent } from "@/content/site";
 import { Container } from "@/components/ui/Container";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { SiteImage } from "@/components/ui/SiteImage";
 
 export function Hero() {
+  const [imageA, imageB] = heroContent.images;
+
   return (
     <section id="inicio" className="bg-ink-900 pb-20 pt-14 sm:pb-28 sm:pt-20">
       <Container>
@@ -16,14 +18,18 @@ export function Hero() {
           </h1>
 
           <div className="grid grid-cols-2 gap-3 sm:gap-4">
-            <PlaceholderImage
-              label="Danza tradicional"
-              variant="accent"
+            <SiteImage
+              src={imageA.src}
+              alt={imageA.alt}
+              variant={imageA.variant}
+              priority
               className="col-span-1 aspect-[3/4] rounded-sm"
             />
-            <PlaceholderImage
-              label="Percusión en vivo"
-              variant="ink"
+            <SiteImage
+              src={imageB.src}
+              alt={imageB.alt}
+              variant={imageB.variant}
+              priority
               className="col-span-1 mt-8 aspect-[3/4] rounded-sm sm:mt-10"
             />
           </div>
@@ -37,7 +43,7 @@ export function Hero() {
           <div className="flex flex-wrap gap-4">
             <a
               href={heroContent.primaryCta.href}
-              className="inline-flex items-center justify-center rounded-sm bg-accent-500 px-6 py-3 text-sm font-medium text-sand-100 transition-colors hover:bg-accent-600"
+              className="inline-flex items-center justify-center rounded-sm bg-accent-500 px-6 py-3 text-sm font-semibold text-ink-900 transition-colors hover:bg-accent-600"
             >
               {heroContent.primaryCta.label}
             </a>

@@ -5,7 +5,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink-900 text-sand-100">
+    <footer className="bg-brand text-sand-100">
       <Container className="flex flex-col gap-10 py-14 md:flex-row md:justify-between">
         <div className="max-w-sm">
           <p className="font-display text-xl font-semibold">{siteConfig.name}</p>

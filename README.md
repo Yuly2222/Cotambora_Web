@@ -2,11 +2,11 @@
 
 Sitio web de la **Corporación Cultural Cotambora**, construido con [Next.js](https://nextjs.org) (App Router), TypeScript y Tailwind CSS. Pensado para desplegarse en [Vercel](https://vercel.com).
 
-La estructura visual (header oscuro con hero grande, secciones numeradas, galería y logos de aliados) está inspirada en el template [Linas](https://builder.hostinger.com/templates?preview=linas) de Hostinger. Todos los textos, colores e imágenes son **contenido de marcador de posición** (placeholder) listos para reemplazarse por la marca definitiva de Cotambora.
+La estructura visual (header con hero grande, secciones numeradas, galería y logos de aliados) está inspirada en el template [Linas](https://builder.hostinger.com/templates?preview=linas) de Hostinger, ya adaptada a la paleta oficial de Cotambora. Los textos y las fotografías siguen siendo **contenido de marcador de posición** listos para reemplazarse por los definitivos — ver [Inventario de imágenes](#inventario-de-imágenes) más abajo.
 
 ## Stack
 
-- **Next.js 15** (App Router, React Server Components)
+- **Next.js 16** (App Router, React Server Components)
 - **TypeScript** en modo estricto
 - **Tailwind CSS** para estilos
 - **Zod** para validación de formularios
@@ -50,10 +50,52 @@ middleware.ts             Content-Security-Policy con nonce por solicitud
 ### Cómo adaptar la plantilla a la marca
 
 1. **Contenido y datos**: edita [`src/content/site.ts`](src/content/site.ts) (nombre, textos, programas, redes sociales, datos de contacto).
-2. **Colores de marca**: edita los tokens `ink`, `accent` y `sand` en [`tailwind.config.ts`](tailwind.config.ts). Todos los componentes los consumen desde ahí.
+2. **Colores de marca**: ya aplicados — ver [Paleta de marca](#paleta-de-marca). Para ajustarlos, edita los tokens `ink`, `accent`, `sand` y `brand` en [`tailwind.config.ts`](tailwind.config.ts); todos los componentes los consumen desde ahí.
 3. **Tipografías**: cambia las fuentes de Google Fonts en [`src/app/layout.tsx`](src/app/layout.tsx).
-4. **Imágenes**: sustituye los componentes `PlaceholderImage` por `next/image` apuntando a archivos reales en `public/images/`.
-5. **Logo**: agrega el logo real en el `Header` y el ícono del sitio (`app/icon.png` o `app/favicon.ico`).
+4. **Imágenes**: agrega los archivos con el nombre exacto indicado en [Inventario de imágenes](#inventario-de-imágenes) dentro de `public/images/`. El componente `SiteImage` ya referencia esas rutas — en cuanto el archivo existe, se muestra automáticamente (antes de eso, se ve el bloque de color de repuesto, sin romper el diseño).
+5. **Logo**: agrega el logo real (`public/images/logo.svg`) en el `Header` y el ícono del sitio (`src/app/icon.png`, convención de Next.js).
+
+## Paleta de marca
+
+Definida en [`tailwind.config.ts`](tailwind.config.ts) y aplicada en todo el sitio:
+
+| Token Tailwind | Color | HEX | Uso principal |
+| --- | --- | --- | --- |
+| `brand` | 🟢 Verde Cotambora | `#176B45` | Header, footer, textos destacados ("eyebrow") y enlaces sobre fondo claro |
+| `accent` | 🟡 Amarillo Tambor | `#F5B82E` | Botones de llamado a la acción, enlaces y numerales sobre fondo oscuro |
+| `ink` | ⚫ Negro Escenario | `#171717` | Hero, tarjetas oscuras de "Programas", texto principal |
+| `sand` | 🤍 Marfil Sabana | `#FFF8E8` | Fondo de las secciones claras (Nosotros, Galería, Contacto) |
+| — | ⚪ Blanco | `#FFFFFF` | Fondos de tarjetas, inputs del formulario |
+
+Por accesibilidad, el amarillo solo se usa como fondo sólido (con texto `ink-900` encima) o como texto sobre fondos oscuros — nunca como texto sobre fondo claro, donde el contraste es insuficiente.
+
+## Inventario de imágenes
+
+Todas las fotos van dentro de `public/images/` con el nombre exacto de esta tabla (formato `.jpg`, aunque `.png`/`.webp` también funcionan si ajustas la extensión en `src/content/site.ts`). No hace falta redimensionar con precisión: `next/image` las recorta y optimiza automáticamente; solo procura que la orientación (vertical/cuadrada) coincida con lo indicado.
+
+| Sección | Archivo | Orientación recomendada | Tamaño mínimo sugerido |
+| --- | --- | --- | --- |
+| Hero (Inicio) | `public/images/hero-1.jpg` | Vertical (3:4) | 900×1200 px |
+| Hero (Inicio) | `public/images/hero-2.jpg` | Vertical (3:4) | 900×1200 px |
+| Nosotros | `public/images/nosotros.jpg` | Vertical (4:5) | 900×1125 px |
+| Programas — Orquesta Tropical | `public/images/programas/orquesta-tropical-1.jpg` / `-2.jpg` | `-1` vertical (4:5), `-2` cuadrada | 1000×1250 px / 700×700 px |
+| Programas — Carranga | `public/images/programas/carranga-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
+| Programas — Teatro | `public/images/programas/teatro-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
+| Programas — Rock | `public/images/programas/rock-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
+| Programas — Danza | `public/images/programas/danza-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
+| Programas — Batucada | `public/images/programas/batucada-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
+| Programas — Papayera | `public/images/programas/papayera-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
+| Galería | `public/images/galeria/danza-tradicional.jpg` | Cuadrada o apaisada | 1200×1200 px |
+| Galería | `public/images/galeria/percusion-vivo.jpg` | Cuadrada o apaisada | 1200×1200 px |
+| Galería | `public/images/galeria/taller-formacion.jpg` | Cuadrada o apaisada | 1200×1200 px |
+| Galería | `public/images/galeria/festival-comunitario.jpg` | Cuadrada o apaisada | 1200×1200 px |
+| Galería | `public/images/galeria/instrumentos-tradicionales.jpg` | Cuadrada o apaisada | 1200×1200 px |
+| Galería | `public/images/galeria/encuentro-agrupaciones.jpg` | Cuadrada o apaisada | 1200×1200 px |
+| Ícono del sitio (favicon) | `src/app/icon.png` (no va en `public/images`) | Cuadrada | 512×512 px |
+
+**Para agregar un grupo cultural nuevo** (más allá de los 7 actuales): añade su objeto en el arreglo `programs` de [`src/content/site.ts`](src/content/site.ts) con un `slug` propio (p. ej. `"champeta"`), y sube sus fotos como `public/images/programas/champeta-1.jpg` y `champeta-2.jpg` — el número, el color y el diseño de la tarjeta se calculan solos.
+
+**Para agregar una foto nueva a la galería**: añade un objeto `{ id, slug, alt }` al arreglo `galleryImages`, y sube `public/images/galeria/{slug}.jpg`.
 
 ## Formulario de contacto
 

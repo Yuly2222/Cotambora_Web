@@ -1,15 +1,16 @@
 import { aboutContent } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { SiteImage } from "@/components/ui/SiteImage";
 
 export function About() {
   return (
     <section id="nosotros" className="bg-sand-100 py-20 sm:py-28">
       <Container>
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-          <PlaceholderImage
-            label="Encuentro cultural comunitario"
+          <SiteImage
+            src={aboutContent.image.src}
+            alt={aboutContent.image.alt}
             variant="sand"
             className="aspect-[4/5] w-full rounded-sm border border-ink-100"
           />
@@ -29,7 +30,7 @@ export function About() {
               {aboutContent.stats.map((stat) => (
                 <div key={stat.label}>
                   <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-display text-3xl font-semibold text-accent-500 sm:text-4xl">
+                  <dd className="font-display text-3xl font-semibold text-brand sm:text-4xl">
                     {stat.value}
                   </dd>
                   <p className="mt-1 text-xs leading-snug text-ink-400 sm:text-sm">

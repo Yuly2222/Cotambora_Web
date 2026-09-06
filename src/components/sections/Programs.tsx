@@ -1,11 +1,12 @@
 import { programs } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PlaceholderImage, type PlaceholderVariant } from "@/components/ui/PlaceholderImage";
+import { SiteImage } from "@/components/ui/SiteImage";
+import type { PlaceholderVariant } from "@/components/ui/PlaceholderImage";
 
-// Combinaciones de color que se van repitiendo por tarjeta, para que la
-// galería de placeholders no se vea monótona. Al llegar imágenes reales,
-// este arreglo (y el componente PlaceholderImage) ya no hace falta.
+// Combinaciones de color que se van repitiendo por tarjeta mientras no hay
+// foto real en esa posición (ver SiteImage). Al llegar todas las fotos,
+// este arreglo deja de tener efecto visible.
 const imagePairs: Array<{ main: PlaceholderVariant; secondary: PlaceholderVariant }> = [
   { main: "ink", secondary: "accent" },
   { main: "accent", secondary: "sand" },
@@ -34,6 +35,8 @@ export function Programs() {
         const isDark = index % 2 === 1;
         const reversed = index % 4 >= 2;
         const { main, secondary } = imagePairs[index % imagePairs.length]!;
+        const mainSrc = `/images/programas/${program.slug}-1.jpg`;
+        const secondarySrc = `/images/programas/${program.slug}-2.jpg`;
 
         return (
           <article
@@ -52,21 +55,24 @@ export function Programs() {
               <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
                 {isDark ? (
                   <div className={`relative pb-10 pl-[18%] pt-10 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
-                    <PlaceholderImage
-                      label={program.name}
+                    <SiteImage
+                      src={mainSrc}
+                      alt={program.name}
                       variant={main}
                       className="ml-auto aspect-[4/5] w-4/5 rounded-sm"
                     />
-                    <PlaceholderImage
-                      label={program.category}
+                    <SiteImage
+                      src={secondarySrc}
+                      alt={`${program.name} — ${program.category}`}
                       variant={secondary}
                       className="absolute left-0 top-0 aspect-square w-2/5 rounded-sm shadow-xl ring-4 ring-ink-800 sm:w-1/3"
                     />
                   </div>
                 ) : (
                   <div className={reversed ? "lg:order-2" : "lg:order-1"}>
-                    <PlaceholderImage
-                      label={program.name}
+                    <SiteImage
+                      src={mainSrc}
+                      alt={program.name}
                       variant={main}
                       className="aspect-[4/5] w-full rounded-sm border border-ink-100"
                     />
@@ -76,7 +82,7 @@ export function Programs() {
                 <div className={`flex flex-col items-start ${reversed ? "lg:order-1" : "lg:order-2"}`}>
                   <p
                     className={`text-xs font-medium uppercase tracking-[0.2em] ${
-                      isDark ? "text-accent-400" : "text-accent-500"
+                      isDark ? "text-accent-400" : "text-brand"
                     }`}
                   >
                     {program.category}
@@ -97,8 +103,9 @@ export function Programs() {
                   </p>
 
                   {!isDark ? (
-                    <PlaceholderImage
-                      label={program.category}
+                    <SiteImage
+                      src={secondarySrc}
+                      alt={`${program.name} — ${program.category}`}
                       variant={secondary}
                       className="mt-6 aspect-[16/10] w-full max-w-sm rounded-sm border border-ink-100"
                     />
@@ -107,7 +114,7 @@ export function Programs() {
                   <a
                     href={program.href ?? "#contacto"}
                     className={`mt-6 inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline ${
-                      isDark ? "text-accent-400" : "text-accent-500"
+                      isDark ? "text-accent-400" : "text-brand"
                     }`}
                   >
                     Conoce más sobre el grupo <span aria-hidden="true">→</span>

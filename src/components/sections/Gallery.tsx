@@ -1,9 +1,10 @@
 import { galleryImages } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { PlaceholderImage } from "@/components/ui/PlaceholderImage";
+import { SiteImage } from "@/components/ui/SiteImage";
+import type { PlaceholderVariant } from "@/components/ui/PlaceholderImage";
 
-const variants = ["accent", "ink", "sand"] as const;
+const variants: PlaceholderVariant[] = ["accent", "ink", "sand"];
 
 export function Gallery() {
   return (
@@ -13,10 +14,12 @@ export function Gallery() {
 
         <div className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3">
           {galleryImages.map((image, index) => (
-            <PlaceholderImage
+            <SiteImage
               key={image.id}
-              label={image.alt}
+              src={`/images/galeria/${image.slug}.jpg`}
+              alt={image.alt}
               variant={variants[index % variants.length]}
+              sizes="(min-width: 768px) 33vw, 50vw"
               className={`aspect-square rounded-sm ${index === 0 ? "col-span-2 aspect-[2/1] md:col-span-1 md:aspect-square" : ""}`}
             />
           ))}
