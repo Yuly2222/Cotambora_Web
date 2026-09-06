@@ -54,18 +54,18 @@ export function Programs() {
 
               <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
                 {isDark ? (
-                  <div className={`relative pb-10 pl-[18%] pt-10 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
+                  <div className={`grid grid-cols-5 gap-3 sm:gap-4 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
                     <SiteImage
                       src={mainSrc}
                       alt={program.name}
                       variant={main}
-                      className="ml-auto aspect-[4/5] w-4/5 rounded-sm"
+                      className="col-span-2 mt-8 aspect-[3/4] w-full rounded-sm sm:mt-10"
                     />
                     <SiteImage
                       src={secondarySrc}
                       alt={`${program.name} — ${program.category}`}
                       variant={secondary}
-                      className="absolute left-0 top-0 aspect-square w-2/5 rounded-sm shadow-xl ring-4 ring-ink-800 sm:w-1/3"
+                      className="col-span-3 aspect-[4/5] w-full rounded-sm"
                     />
                   </div>
                 ) : (

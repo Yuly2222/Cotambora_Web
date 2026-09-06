@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { navLinks, siteConfig } from "@/content/site";
 import { Container } from "@/components/ui/Container";
+import siteIcon from "@/app/icon.png";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -12,8 +14,16 @@ export function Header() {
       <Container className="flex h-16 items-center justify-between sm:h-20">
         <a
           href="#inicio"
-          className="font-display text-lg font-semibold text-sand-100 sm:text-xl"
+          className="flex items-center gap-2.5 font-display text-lg font-semibold text-sand-100 sm:text-xl"
         >
+          <Image
+            src={siteIcon}
+            alt=""
+            width={56}
+            height={56}
+            priority
+            className="h-8 w-8 rounded-sm sm:h-9 sm:w-9"
+          />
           {siteConfig.name}
         </a>
 
