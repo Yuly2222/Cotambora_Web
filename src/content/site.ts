@@ -38,11 +38,6 @@ export const heroContent = {
     "Somos una corporación cultural sin ánimo de lucro dedicada a preservar, fortalecer y proyectar las tradiciones musicales, dancísticas y ancestrales de nuestro territorio.",
   primaryCta: { label: "Conoce nuestros programas", href: "#programas" },
   secondaryCta: { label: "Contáctanos", href: "#contacto" },
-  // Ver README > "Inventario de imágenes" para el nombre exacto de cada archivo.
-  images: [
-    { src: "/images/hero-1.jpg", alt: "Danza tradicional", variant: "accent" },
-    { src: "/images/hero-2.jpg", alt: "Percusión en vivo", variant: "ink" },
-  ],
 } as const;
 
 export const aboutContent = {

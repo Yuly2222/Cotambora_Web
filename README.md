@@ -75,8 +75,6 @@ Todas las fotos van dentro de `public/images/` con el nombre exacto de esta tabl
 
 | Sección | Archivo | Orientación recomendada | Tamaño mínimo sugerido |
 | --- | --- | --- | --- |
-| Hero (Inicio) | `public/images/hero-1.jpg` | Vertical (3:4) | 900×1200 px |
-| Hero (Inicio) | `public/images/hero-2.jpg` | Vertical (3:4) | 900×1200 px |
 | Nosotros | `public/images/nosotros.jpg` | Vertical (4:5) | 900×1125 px |
 | Programas — Orquesta Tropical | `public/images/programas/orquesta-tropical-1.jpg` / `-2.jpg` | `-1` vertical (4:5), `-2` cuadrada | 1000×1250 px / 700×700 px |
 | Programas — Carranga | `public/images/programas/carranga-1.jpg` / `-2.jpg` | igual que arriba | igual que arriba |
@@ -96,6 +94,8 @@ Todas las fotos van dentro de `public/images/` con el nombre exacto de esta tabl
 **Para agregar un grupo cultural nuevo** (más allá de los 7 actuales): añade su objeto en el arreglo `programs` de [`src/content/site.ts`](src/content/site.ts) con un `slug` propio (p. ej. `"champeta"`), y sube sus fotos como `public/images/programas/champeta-1.jpg` y `champeta-2.jpg` — el número, el color y el diseño de la tarjeta se calculan solos.
 
 **Para agregar una foto nueva a la galería**: añade un objeto `{ id, slug, alt }` al arreglo `galleryImages`, y sube `public/images/galeria/{slug}.jpg`.
+
+**Inicio (Hero)**: no usa fotos propias — el carrusel muestra automáticamente todas las fotos de `public/images/programas/` (ver [`Hero.tsx`](src/components/sections/Hero.tsx)). Al agregar un grupo cultural nuevo con sus fotos, entran solas al carrusel del inicio.
 
 ## Formulario de contacto
 
