@@ -14,8 +14,8 @@ export const siteConfig = {
   description:
     "La Corporación Cultural Cotambora promueve, preserva y proyecta las expresiones culturales, musicales y dancísticas de nuestra comunidad.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
-  email: "contacto@cotambora.org",
-  phone: "+57 300 000 0000",
+  email: "corporacioncotambora@gmail.com",
+  phone: "+57 314 348 4783",
   address: "Dirección de la corporación, Ciudad, Colombia",
   social: {
     instagram: "https://instagram.com/cotambora",
@@ -142,12 +142,4 @@ export const galleryImages = [
   { id: 4, slug: "festival-comunitario", alt: "Festival cultural comunitario" },
   { id: 5, slug: "instrumentos-tradicionales", alt: "Instrumentos tradicionales" },
   { id: 6, slug: "encuentro-agrupaciones", alt: "Encuentro de agrupaciones culturales" },
-] as const;
-
-export const partners = [
-  { id: 1, name: "Alcaldía Municipal" },
-  { id: 2, name: "Ministerio de Cultura" },
-  { id: 3, name: "Fundación Aliada" },
-  { id: 4, name: "Casa de la Cultura" },
-  { id: 5, name: "Red Cultural Regional" },
 ] as const;
