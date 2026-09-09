@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   verify:
-    name: Lint, typecheck y build
+    name: Lint, build y typecheck
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -45,8 +45,12 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Verificación de tipos
-        run: npm run typecheck
-
+      # `next build` genera next-env.d.ts y .next/types/*.d.ts (tipos de
+      # imports de imagen y de rutas tipadas). En un checkout limpio esos
+      # archivos no existen todavía, así que el build va antes que el
+      # typecheck independiente para que "tsc --noEmit" los encuentre.
       - name: Build de producción
         run: npm run build
+
+      - name: Verificación de tipos
+        run: npm run typecheck
