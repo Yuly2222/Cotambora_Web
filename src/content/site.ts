@@ -22,7 +22,8 @@ export const siteConfig = {
   social: {
     instagram: "https://instagram.com/cotambora",
     facebook: "https://facebook.com/cotambora",
-    youtube: "https://youtube.com/@cotambora",
+    youtube: "https://youtube.com/@CorporacionCotambora",
+    youtubePlaylists: "https://www.youtube.com/@CorporacionCotambora/playlists",
   },
 } as const;
 

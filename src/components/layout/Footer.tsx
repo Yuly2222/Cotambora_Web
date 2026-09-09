@@ -42,6 +42,15 @@ export function Footer() {
             <a href={siteConfig.social.facebook} className="hover:text-accent-400" aria-label="Facebook">
               Facebook
             </a>
+            <a
+              href={siteConfig.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent-400"
+              aria-label="YouTube"
+            >
+              YouTube
+            </a>
           </div>
         </div>
       </Container>

@@ -1,4 +1,4 @@
-import { programs } from "@/content/site";
+import { programs, siteConfig } from "@/content/site";
 import { Container } from "@/components/ui/Container";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { SiteImage } from "@/components/ui/SiteImage";
@@ -118,7 +118,9 @@ export function Programs() {
                   ) : null}
 
                   <a
-                    href={program.href ?? "#contacto"}
+                    href={program.href ?? siteConfig.social.youtubePlaylists}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`mt-6 inline-flex items-center gap-2 text-sm font-medium underline-offset-4 hover:underline ${
                       isDark ? "text-accent-400" : "text-brand"
                     }`}
