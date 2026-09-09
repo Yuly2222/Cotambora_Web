@@ -18,7 +18,7 @@ export const siteConfig = {
   phone: "+57 314 348 4783",
   // Mensaje que llega precargado al abrir el chat desde el botón de WhatsApp.
   whatsappMessage: "Hola Cotambora, quiero más información.",
-  address: "Dirección de la corporación, Ciudad, Colombia",
+  address: "Cra 2#4-45, Cota Cundinamarca, Colombia",
   social: {
     instagram: "https://instagram.com/cotambora",
     facebook: "https://facebook.com/cotambora",
@@ -37,22 +37,23 @@ export const heroContent = {
   eyebrow: "Corporación Cultural",
   title: "Cotambora",
   description:
-    "Somos una corporación cultural sin ánimo de lucro dedicada a preservar, fortalecer y proyectar las tradiciones musicales, dancísticas y ancestrales de nuestro territorio.",
+    "Somos una corporación cultural sin ánimo de lucro dedicada a preservar, fortalecer y proyectar las tradiciones musicales, dancísticas, teatrales y ancestrales de nuestro territorio mediante shows en vivo de alta calidad.",
   primaryCta: { label: "Conoce nuestros programas", href: "#programas" },
   secondaryCta: { label: "Contáctanos", href: "#contacto" },
 } as const;
 
 export const aboutContent = {
   eyebrow: "Nosotros",
-  title: "Cultura viva, memoria colectiva",
+  title: "Creamos experiencias memorables",
   paragraphs: [
-    "Desde nuestra fundación trabajamos junto a artistas, gestores culturales y comunidades para mantener vivas las tradiciones que nos identifican: la música de percusión, la danza y la oralidad.",
-    "Creemos en la cultura como motor de desarrollo social: generamos espacios de formación, encuentro e investigación que fortalecen el tejido comunitario y proyectan nuestro patrimonio inmaterial hacia nuevas generaciones.",
+    "Desde nuestra fundación trabajamos junto a artistas, gestores culturales y comunidades para mantener vivas las tradiciones que nos identifican: la música, el teatro, la danza y la oralidad.",
+    "Creemos en la cultura como motor de desarrollo social: generamos espacios de formación y encuentro  que fortalecen el tejido comunitario y proyectan nuestro patrimonio inmaterial hacia nuevas generaciones.",
   ],
   stats: [
-    { value: "+10", label: "años de trabajo cultural" },
-    { value: "+500", label: "artistas y gestores acompañados" },
+    { value: "+5", label: "años de trabajo cultural" },
+    { value: "+100", label: "artistas y gestores acompañados" },
     { value: "+30", label: "eventos y encuentros realizados" },
+    { value: "+20", label: "Reconocimientos a nivel nacional" },
   ],
   image: { src: "/images/nosotros.jpg", alt: "Encuentro cultural comunitario" },
 } as const;
@@ -82,42 +83,42 @@ export const programs: CulturalGroup[] = [
     name: "Orquesta Tropical",
     category: "Música tropical",
     description:
-      "Ensamble que fusiona ritmos tropicales del Caribe colombiano —cumbia, porro y salsa— en arreglos propios para escenarios y festivales.",
+      "Ensamble que fusiona ritmos del Caribe —salsa, merengue y tropical— en arreglos propios para escenarios, festivales, eventos corporativos y privados.",
   },
   {
     slug: "batucada",
     name: "Batucada",
     category: "Percusión",
     description:
-      "Batería de percusión que contagia de ritmo cada calle, plaza y escenario que recorre.",
+      "Percusión que contagia de ritmo cada calle, plaza y escenario que recorre.",
   },
   {
     slug: "rock",
     name: "Rock",
     category: "Música",
     description:
-      "Banda que explora el rock desde una mirada local, tendiendo puentes entre la tradición cultural y la escena contemporánea.",
+      "Banda que explora el rock desde una mirada clásica, tendiendo puentes entre la tradición cultural y la escena contemporánea.",
   },
   {
     slug: "carranga",
     name: "Carranga",
     category: "Música andina",
     description:
-      "Agrupación que mantiene viva la carranga campesina, con tiple, guitarra, requinto y guacharaca, heredera de la tradición andina.",
+      "Agrupación que mantiene viva la carranga campesina, con tiple, guitarra, requinto y guacharaca, heredera de la tradición ancestral para escenarios, festivales, eventos corporativos y privados.",
   },
   {
     slug: "teatro",
     name: "Teatro",
     category: "Artes escénicas",
     description:
-      "Colectivo de teatro comunitario que crea puestas en escena a partir de la memoria, la oralidad y las historias del territorio.",
+      "Colectivo de teatro que crea puestas en escena a partir de la memoria, la oralidad y las historias del territorio. Lleva un espectáculo de alto nivel a tus invitados/ clientes",
   },
   {
     slug: "danza",
     name: "Danza",
     category: "Danza folclórica",
     description:
-      "Grupo de danza dedicado a la investigación y puesta en escena de bailes tradicionales de la región.",
+      "Grupo de danza dedicado a la puesta en escena de bailes tradicionales de la región, para escenarios, festivales, eventos corporativos y privados",
   },
   {
     slug: "papayera",
