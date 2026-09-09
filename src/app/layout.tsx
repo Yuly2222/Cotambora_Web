@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Sora } from "next/font/google";
+import { headers } from "next/headers";
 import { siteConfig } from "@/content/site";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 import "./globals.css";
@@ -38,11 +39,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Fuerza renderizado dinámico por request: el middleware genera un nonce
+  // distinto en cada request para la CSP, así que la página no puede
+  // quedar prerenderizada de forma estática con un nonce fijo (o ausente),
+  // o el navegador bloqueará los scripts por no coincidir con el header CSP.
+  await headers();
+
   return (
     <html lang="es" className={`${sans.variable} ${display.variable}`}>
       <body className="font-sans">
