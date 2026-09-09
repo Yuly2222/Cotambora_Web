@@ -3,14 +3,13 @@ import { Container } from "@/components/ui/Container";
 import { Carousel, type CarouselSlide } from "@/components/ui/Carousel";
 import { Reveal } from "@/components/ui/Reveal";
 import type { PlaceholderVariant } from "@/components/ui/PlaceholderImage";
+import { getEventImages } from "@/lib/event-images";
 
 const variants: PlaceholderVariant[] = ["accent", "ink", "sand"];
 
-// El carrusel del hero muestra las fotos que ya están cargadas en
-// "Programas" (public/images/programas/) — no requiere fotos propias.
-// Al agregar un grupo nuevo a `programs`, sus fotos entran solas al
-// carrusel, en el mismo orden.
-const heroSlides: CarouselSlide[] = programs.flatMap((program, i) => [
+// Respaldo mientras no haya fotos de eventos en Vercel Blob: las mismas
+// fotos que ya están cargadas en "Programas" (public/images/programas/).
+const fallbackSlides: CarouselSlide[] = programs.flatMap((program, i) => [
   {
     src: `/images/programas/${program.slug}-1.jpg`,
     alt: `${program.name} — fotografía 1`,
@@ -23,7 +22,22 @@ const heroSlides: CarouselSlide[] = programs.flatMap((program, i) => [
   },
 ]);
 
-export function Hero() {
+export async function Hero() {
+  // El carrusel del hero muestra las fotos de eventos subidas a Vercel
+  // Blob (carpeta `eventos/`) — se consultan en cada request, así que
+  // agregar o quitar fotos desde el dashboard de Vercel se refleja en el
+  // sitio sin necesidad de un nuevo deploy. Ver README > "Fotos de eventos
+  // (carrusel del inicio)".
+  const eventImages = await getEventImages();
+  const heroSlides: CarouselSlide[] =
+    eventImages.length > 0
+      ? eventImages.map((image, i) => ({
+          src: image.url,
+          alt: `Evento Cotambora — fotografía ${i + 1}`,
+          variant: variants[i % variants.length],
+        }))
+      : fallbackSlides;
+
   return (
     <section id="inicio" className="bg-ink-900 pb-20 pt-14 sm:pb-28 sm:pt-20">
       <Container>
@@ -34,7 +48,10 @@ export function Hero() {
 
           <Carousel
             slides={heroSlides}
-            intervalMs={2000}
+            // Las fotos de eventos vienen de Vercel Blob (peso variable, sin
+            // control previo de compresión): un intervalo corto las corta a
+            // mitad de carga y se ve la foto en negro. 6s da margen suficiente.
+            intervalMs={6000}
             sizes="100vw"
             className="aspect-video w-full"
           />

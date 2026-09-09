@@ -34,8 +34,18 @@ export function Contact() {
       });
 
       if (!response.ok) {
-        const data = (await response.json().catch(() => null)) as { error?: string } | null;
-        setErrorMessage(data?.error ?? "No se pudo enviar el mensaje. Intenta más tarde.");
+        const data = (await response.json().catch(() => null)) as {
+          error?: string;
+          details?: Record<string, string[] | undefined>;
+        } | null;
+        const fieldMessages = Object.values(data?.details ?? {})
+          .flat()
+          .filter((message): message is string => Boolean(message));
+        setErrorMessage(
+          fieldMessages.length > 0
+            ? fieldMessages.join(" ")
+            : (data?.error ?? "No se pudo enviar el mensaje. Intenta más tarde."),
+        );
         setStatus("error");
         return;
       }

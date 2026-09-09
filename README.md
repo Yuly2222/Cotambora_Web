@@ -95,7 +95,28 @@ Todas las fotos van dentro de `public/images/` con el nombre exacto de esta tabl
 
 **Para agregar una foto nueva a la galería**: añade un objeto `{ id, slug, alt }` al arreglo `galleryImages`, y sube `public/images/galeria/{slug}.jpg`.
 
-**Inicio (Hero)**: no usa fotos propias — el carrusel muestra automáticamente todas las fotos de `public/images/programas/` (ver [`Hero.tsx`](src/components/sections/Hero.tsx)). Al agregar un grupo cultural nuevo con sus fotos, entran solas al carrusel del inicio.
+**Inicio (Hero)**: el carrusel muestra las fotos de eventos subidas a Vercel Blob (ver sección siguiente). Si todavía no hay ninguna, usa como respaldo automático las fotos de `public/images/programas/` (ver [`Hero.tsx`](src/components/sections/Hero.tsx)).
+
+## Fotos de eventos (carrusel del inicio)
+
+A diferencia del resto de fotos del sitio (que van en `public/images/` y requieren un deploy para actualizarse), las fotos del carrusel de inicio se guardan en **Vercel Blob** — un almacenamiento de archivos del propio Vercel — para poder agregarlas o quitarlas en cualquier momento sin volver a desplegar la web.
+
+El store ya está creado: **cotambora-web-blob** (Storage del proyecto en Vercel). Sus variables (`EVENTOSBLOB_STORE_ID` y `EVENTOSBLOB_READ_WRITE_TOKEN`) ya están conectadas al proyecto en Vercel y copiadas al `.env` local — no hace falta volver a configurarlas salvo que se cree un store nuevo.
+
+**Si algún día se crea un store nuevo desde cero:**
+
+1. En el dashboard de Vercel, ve a la pestaña **Storage** del proyecto → **Create Database** → **Blob**. Dale un nombre y conéctalo al proyecto.
+2. Vercel agrega automáticamente las variables `<NOMBRE>_STORE_ID` y `<NOMBRE>_READ_WRITE_TOKEN` a Production/Preview/Development.
+3. Para desarrollo local, copia esas mismas variables a tu `.env` (o `.env.local`): están en **Storage → tu store → pestaña ".env.local"**.
+4. Actualiza el nombre de la variable de token en [`event-images.ts`](src/lib/event-images.ts) si cambia.
+
+**Para agregar/quitar fotos de un evento (sin deploy):**
+
+1. En **Storage → tu store → Browser**, sube las fotos dentro de una carpeta llamada `eventos/` (p. ej. `eventos/festival-cota-2026-1.jpg`, `eventos/festival-cota-2026-2.jpg`). El nombre exacto no importa — el sitio simplemente muestra, en orden alfabético, todo lo que encuentre bajo `eventos/`.
+2. Para quitar una foto vieja, bórrala desde ese mismo Browser.
+3. Refresca la página del sitio: el cambio se ve al instante, sin redeploy (las fotos se consultan en cada visita — ver [`event-images.ts`](src/lib/event-images.ts)).
+
+Formatos soportados: `.jpg`, `.jpeg`, `.png`, `.webp`, `.avif`. Como con el resto del sitio, `next/image` optimiza y recorta automáticamente, así que no hace falta preprocesarlas.
 
 ## Formulario de contacto
 

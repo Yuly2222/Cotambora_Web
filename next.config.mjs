@@ -32,9 +32,13 @@ const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   images: {
-    // Sin dominios externos por defecto: todas las imágenes se sirven
-    // localmente desde /public hasta que se defina el CMS/CDN definitivo.
-    remotePatterns: [],
+    remotePatterns: [
+      // Fotos de eventos servidas desde Vercel Blob (ver src/lib/event-images.ts).
+      {
+        protocol: "https",
+        hostname: "*.public.blob.vercel-storage.com",
+      },
+    ],
   },
   async headers() {
     return [
