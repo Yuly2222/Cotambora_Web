@@ -31,15 +31,6 @@ const securityHeaders = [
 const nextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
-  images: {
-    remotePatterns: [
-      // Fotos de eventos servidas desde Vercel Blob (ver src/lib/event-images.ts).
-      {
-        protocol: "https",
-        hostname: "*.public.blob.vercel-storage.com",
-      },
-    ],
-  },
   async headers() {
     return [
       {

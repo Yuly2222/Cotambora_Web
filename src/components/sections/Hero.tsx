@@ -3,12 +3,14 @@ import { Container } from "@/components/ui/Container";
 import { Carousel, type CarouselSlide } from "@/components/ui/Carousel";
 import { Reveal } from "@/components/ui/Reveal";
 import type { PlaceholderVariant } from "@/components/ui/PlaceholderImage";
-import { getEventImages } from "@/lib/event-images";
 
 const variants: PlaceholderVariant[] = ["accent", "ink", "sand"];
 
-// Respaldo mientras no haya fotos de eventos en Vercel Blob: las mismas
-// fotos que ya están cargadas en "Programas" (public/images/programas/).
+// Fotos de eventos del carrusel: archivos en public/images/eventos/.
+// Para cambiarlas, sube el archivo y edita esta lista. Si queda vacía,
+// se usan como respaldo las fotos de "Programas".
+const eventPhotos = ["evento-1.png", "evento-2.png", "evento-3.png"];
+
 const fallbackSlides: CarouselSlide[] = programs.flatMap((program, i) => [
   {
     src: `/images/programas/${program.slug}-1.jpg`,
@@ -22,21 +24,16 @@ const fallbackSlides: CarouselSlide[] = programs.flatMap((program, i) => [
   },
 ]);
 
-export async function Hero() {
-  // El carrusel del hero muestra las fotos de eventos subidas a Vercel
-  // Blob (carpeta `eventos/`) — se consultan en cada request, así que
-  // agregar o quitar fotos desde el dashboard de Vercel se refleja en el
-  // sitio sin necesidad de un nuevo deploy. Ver README > "Fotos de eventos
-  // (carrusel del inicio)".
-  const eventImages = await getEventImages();
-  const heroSlides: CarouselSlide[] =
-    eventImages.length > 0
-      ? eventImages.map((image, i) => ({
-          src: image.url,
-          alt: `Evento Cotambora — fotografía ${i + 1}`,
-          variant: variants[i % variants.length],
-        }))
-      : fallbackSlides;
+const heroSlides: CarouselSlide[] =
+  eventPhotos.length > 0
+    ? eventPhotos.map((file, i) => ({
+        src: `/images/eventos/${file}`,
+        alt: `Evento Cotambora — fotografía ${i + 1}`,
+        variant: variants[i % variants.length],
+      }))
+    : fallbackSlides;
+
+export function Hero() {
 
   return (
     <section id="inicio" className="bg-ink-900 pb-20 pt-14 sm:pb-28 sm:pt-20">
@@ -48,9 +45,8 @@ export async function Hero() {
 
           <Carousel
             slides={heroSlides}
-            // Las fotos de eventos vienen de Vercel Blob (peso variable, sin
-            // control previo de compresión): un intervalo corto las corta a
-            // mitad de carga y se ve la foto en negro. 6s da margen suficiente.
+            // Las fotos de eventos pesan bastante: un intervalo corto las corta
+            // a mitad de carga y se ve la foto en negro. 6s da margen suficiente.
             intervalMs={6000}
             sizes="100vw"
             className="aspect-video w-full"
